@@ -17,7 +17,9 @@ app.post("/users", userController.saveUser, tokenController.signToken, (req, res
 });
 
 // loggin - middleware to verify user
-app.post("/login", userController.verifyUser, tokenController.signToken, (req, res, next) => {});
+app.post("/login", userController.verifyUser, tokenController.signToken, (req, res, next) => {
+  res.status(200).json('login successful!')
+});
 
 app.get("/recyclingHistory", userController.getHistory, (req, res, next) => {
   res.status(200).json(res.locals.result);

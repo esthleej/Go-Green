@@ -11,10 +11,10 @@ mongoose.connection.once("open", () => {
 var userSchema = new Schema({
   username: String,
   password: String,
-  totalMoneyGained: { type: Number, default: 0 },
+  totalPaid: { type: Number, default: 0 },
   totalItemsRecycled: { type: Number, default: 0 },
   recyclingHistory: {
-    type: [{ date: Date, amountOfMoneyGained: Number, amountRecycled: Number }],
+    type: [{ date: Date, amountPaid: Number, amountRecycled: Number }],
     default: []
   }
 });
