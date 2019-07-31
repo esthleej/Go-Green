@@ -1,25 +1,27 @@
 import React from 'react';
-import styled from 'styled-components'
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 // import { RouteComponentProps } from 'react-router-dom';
 
 function NavBar() {
   return (
     <NavBarStyled>
-      <LogoStyled>Go Green</LogoStyled>
+      <Link to={`/`}>
+        <LogoStyled>Go Green</LogoStyled>
+      </Link>
       <ButtonStyled>Sign In</ButtonStyled>
     </NavBarStyled>
   );
 }
 
 const NavBarStyled = styled.div`
-  display:flex;
+  display: flex;
   justify-content: space-between;
-  border: 2px solid green
-`
-const ButtonStyled = styled.button`
-`
+  border: 2px solid green;
+`;
+const ButtonStyled = styled.button``;
 
-const LogoStyled = styled.div`
-
-`
+const LogoStyled = styled.button`
+  text-decoration: none !important;
+`;
 export default NavBar;
