@@ -16,7 +16,9 @@ app.get("/recyclingHistory", userController.getHistory, (req, res, next) => {
   res.status(200).json(res.locals.result);
 });
 
-app.post("/recyclingHistory", )
+app.post("/recyclingHistory", userController.addToHistory, (req, res, next) => {
+  res.status(200).json("history has been updated.");
+});
 
 app.use((err, req, res, next) => {
   res.status(400).json(err);
