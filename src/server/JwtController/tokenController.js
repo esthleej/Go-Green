@@ -21,5 +21,6 @@ module.exports = {
   signToken(req, res, next) {
     let token = jwt.sign({ username: req.body.username }, secret);
     res.cookie("token", `Bearer ${token}`);
+    next();
   }
 };

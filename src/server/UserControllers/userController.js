@@ -7,10 +7,9 @@ userController.saveUser = (req, res, next) => {
 };
 
 userController.getHistory = (req, res, next) => {
-  // console.log("req.body.name", req.body.name);
   user.findOne(
     {
-      username: req.headers.name
+      username: req.headers.username
     },
     (err, result) => {
       if (err) {
@@ -34,8 +33,9 @@ userController.verifyUser = (req, res, next) => {
 };
 
 userController.addToHistory = (req, res, next) => {
+  console.log("add to history is being called");
   user.findOneAndUpdate(
-    { username: req.body.name },
+    { username: req.body.username },
     {
       $push: { recyclingHistory: req.body.history },
       $inc: {
