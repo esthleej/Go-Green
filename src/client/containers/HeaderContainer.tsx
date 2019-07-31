@@ -1,12 +1,7 @@
 import React from 'react';
 
-
 function HeaderContainer() {
-  return (
-<div>
-
-</div>
-  );
+  return <div />;
 }
 
 export default HeaderContainer;

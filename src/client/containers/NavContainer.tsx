@@ -1,14 +1,8 @@
 import React from 'react';
 // import { RouteComponentProps } from 'react-router-dom';
 
-
 function NavContainer() {
-
-  return (
-  <div>
-    
-  </div>
-  );
+  return <div />;
 }
 
 export default NavContainer;
