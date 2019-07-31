@@ -1,11 +1,12 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// const port = process.env.PORT;
 mongoose.connect(
-  "mongodb+srv://student:ilovetesting@cluster0-ss7uk.mongodb.net/GoGreen?retryWrites=true&w=majority"
+  'mongodb+srv://student:ilovetesting@cluster0-ss7uk.mongodb.net/GoGreen?retryWrites=true&w=majority'
 );
-mongoose.connection.once("open", () => {
-  console.log("Connected");
+mongoose.connection.once('open', () => {
+  console.log('Connected');
 });
 
 var userSchema = new Schema({
@@ -18,4 +19,4 @@ var userSchema = new Schema({
     default: []
   }
 });
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model('User', userSchema);
