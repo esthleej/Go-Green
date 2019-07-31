@@ -12,7 +12,16 @@ app.post("/users", userController.saveUser, (req, res, next) => {
   res.status(200).json("user has been saved!");
 });
 
-app.get("/recyclingHistory", )
+app.get("/recyclingHistory", userController.getHistory, (req, res, next) => {
+  res.status(200).json(res.locals.result);
+});
+
+app.post("/recyclingHistory", )
+
+app.use((err, req, res, next) => {
+  res.status(400).json(err);
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
