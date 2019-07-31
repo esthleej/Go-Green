@@ -14,7 +14,7 @@ const Header = (props: any) => {
     },
     { totalPrice: 0, totalCount: 0 }
   );
-
+  ;
   return (
     <div>
       <div>Help save Earth and go to your local recycling center today!</div>
@@ -24,7 +24,7 @@ const Header = (props: any) => {
       <TotalCategoriesInfoStyled>
         <TotalStyled>
           Total Price:
-          <TotalNumberStyled>{total.totalPrice}</TotalNumberStyled>
+          <TotalNumberStyled>${(Math.round(100*total.totalPrice)/100).toFixed(2)}</TotalNumberStyled>
         </TotalStyled>
         <TotalStyled>
           Total Items Collected:
