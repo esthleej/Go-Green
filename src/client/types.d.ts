@@ -10,3 +10,5 @@ export interface Recycling {
   amountPair: Number;
   amountRecycled: Number;
 }
+
+export type Material = string;
