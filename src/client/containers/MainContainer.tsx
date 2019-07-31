@@ -1,11 +1,13 @@
 import React from 'react';
-
+import Recycle from '../components/Recycle';
 
 function MainContainer() {
   return (
-<div>
-
-</div>
+    <div>
+      <Recycle />
+      <Recycle />
+      <Recycle />
+    </div>
   );
 }
 
