@@ -11,7 +11,21 @@ const App: React.FunctionComponent<{}> = (props: any) => {
     password: '',
     totalPaid: 0,
     totalItemsRecycled: 0,
-    recyclingHistory: {}
+    recyclingHistory: {},
+    type: {
+      glass: {
+        lessThan: 2,
+        greaterThan: 2
+      },
+      plastic: {
+        lessThan: 1,
+        greaterThan: 99
+      },
+      metal: {
+        lessThan: 3,
+        greaterThan: 1
+      }
+    }
   };
 
   // didMount
@@ -22,7 +36,7 @@ const App: React.FunctionComponent<{}> = (props: any) => {
       <NavContainer />
       {/* <Switch>  */}
       {/* <GuestContainer /> */}
-      <UserContainer />
+      <UserContainer type={state.type} />
       {/* <HistoryContainer/> */}
       {/* </Switch> */}
     </div>
