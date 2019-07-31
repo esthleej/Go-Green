@@ -11,7 +11,7 @@ userController.getHistory = (req, res, next) => {
   // console.log("req.body.name", req.body.name);
   user.findOne(
     {
-      username: req.body.name
+      username: req.headers.name
     },
     (err, result) => {
       if (err) {
