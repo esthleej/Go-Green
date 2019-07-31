@@ -33,7 +33,10 @@ userController.addToHistory = (req, res, next) => {
         totalItemsRecycled: req.body.history.amountRecycled
       }
     },
-    next
+    err => {
+      if (err) return next(err);
+      return next();
+    }
   );
 };
 
