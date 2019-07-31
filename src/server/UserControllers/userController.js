@@ -1,4 +1,4 @@
-const user = require("../Model/model");
+const user = require('../Model/model');
 const userController = {};
 
 userController.saveUser = (req, res, next) => {
@@ -17,7 +17,7 @@ userController.getHistory = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      console.log("result", result);
+      console.log('result', result);
       res.locals.result = result.recyclingHistory;
       return next();
     }
