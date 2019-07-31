@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const userController = require("./UserControllers/userController");
+const userController = require("./server/UserControllers/userController");
 const cors = require("cors");
 const port = 5000;
 
@@ -16,7 +16,9 @@ app.get("/recyclingHistory", userController.getHistory, (req, res, next) => {
   res.status(200).json(res.locals.result);
 });
 
-app.post("/recyclingHistory", )
+app.post("/recyclingHistory", userController.addToHistory, (req, res, next) => {
+  res.status(200).json("history has been updated.");
+});
 
 app.use((err, req, res, next) => {
   res.status(400).json(err);

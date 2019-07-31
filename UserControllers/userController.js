@@ -1,4 +1,4 @@
-const user = require('../Model/model');
+const user = require("../Model/model");
 const userController = {};
 
 userController.saveUser = (req, res, next) => {
@@ -17,7 +17,6 @@ userController.getHistory = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      console.log('result', result);
       res.locals.result = result.recyclingHistory;
       return next();
     }
@@ -25,7 +24,20 @@ userController.getHistory = (req, res, next) => {
 };
 
 userController.addToHistory = (req, res, next) => {
-
+  user.findOneAndUpdate(
+    { username: req.body.name },
+    {
+      $push: { recyclingHistory: req.body.history },
+      $inc: {
+        totalPaid: req.body.history.amountPaid,
+        totalItemsRecycled: req.body.history.amountRecycled
+      }
+    },
+    err => {
+      if (err) return next(err);
+      return next();
+    }
+  );
 };
 
 module.exports = userController;
