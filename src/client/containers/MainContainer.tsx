@@ -1,15 +1,16 @@
 import React from 'react';
 import Recycle from '../components/Recycle';
 
-type material = string
-function MainContainer() {
+type material = string;
+const MainContainer = (props: any) => {
   return (
     <div>
-      <Recycle material="Glass"/>
-      <Recycle material="Plastic"/>
-      <Recycle material="Metal"/>
+      Recycling Categories:
+      <Recycle materialInfo={props.type.glass} material="Glass" />
+      <Recycle materialInfo={props.type.metal} material="Plastic" />
+      <Recycle materialInfo={props.type.plastic} material="Metal" />
     </div>
   );
-}
+};
 
 export default MainContainer;
