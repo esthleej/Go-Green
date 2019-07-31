@@ -1,6 +1,6 @@
 import React from 'react';
 // import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import NavContainer from './containers/NavContainer';
+import NavBar from './components/NavBar';
 // import GuestContainer from './containers/GuestContainer';
 import UserContainer from './containers/UserContainer';
 // import HistoryContainer from './containers/HistoryContainer';
@@ -33,7 +33,7 @@ const App: React.FunctionComponent<{}> = (props: any) => {
 
   return (
     <div>
-      <NavContainer />
+      <NavBar />
       {/* <Switch>  */}
       {/* <GuestContainer /> */}
       <UserContainer type={state.type} />
