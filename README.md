@@ -1,4 +1,5 @@
 # Go-Green
+
 post: /users
 request body expects "user" property in the format {"username": <string>, "password": <string>}
 
