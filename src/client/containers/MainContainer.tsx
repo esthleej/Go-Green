@@ -1,12 +1,13 @@
 import React from 'react';
 import Recycle from '../components/Recycle';
 
+type material = string
 function MainContainer() {
   return (
     <div>
-      <Recycle />
-      <Recycle />
-      <Recycle />
+      <Recycle material="Glass"/>
+      <Recycle material="Plastic"/>
+      <Recycle material="Metal"/>
     </div>
   );
 }
