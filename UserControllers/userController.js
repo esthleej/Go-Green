@@ -24,6 +24,8 @@ userController.getHistory = (req, res, next) => {
   );
 };
 
-userController.addToHistory = (req, res, next) => {};
+userController.addToHistory = (req, res, next) => {
+  
+};
 
 module.exports = userController;
