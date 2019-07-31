@@ -26,7 +26,13 @@ userController.getHistory = (req, res, next) => {
 userController.addToHistory = (req, res, next) => {
   user.findOneAndUpdate(
     { username: req.body.name },
-    { $push: { recyclingHistory: req.body.history } },
+    {
+      $push: { recyclingHistory: req.body.history },
+      $inc: {
+        totalPaid: req.body.history.amountPaid,
+        totalItemsRecycled: req.body.history.amountRecycled
+      }
+    },
     next
   );
 };
