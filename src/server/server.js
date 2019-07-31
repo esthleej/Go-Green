@@ -3,15 +3,17 @@ const app = express();
 const bodyParser = require("body-parser");
 const userController = require("./UserControllers/userController");
 const cors = require("cors");
-const cookieControllers = require("./src/server/Cookies");
+const cookieController = require("./Cookies/cookieController");
+const cookieParser = require("cookie-parser");
 const port = 5000;
 
 app.use(cors());
 app.use(bodyParser.json({ extended: true }));
+app.use(cookieParser());
 
 // set cookie when they're logged in
-app.get("/", cookieControllers.setCookie, (req, res, next) => {
-  res.status(200);
+app.get("/", cookieController.setCookie, (req, res, next) => {
+  res.status(200).send();
 });
 
 app.post("/users", userController.saveUser, (req, res, next) => {
