@@ -2,7 +2,6 @@ const cookieController = {};
 
 cookieController.setCookie = (req, res, next) => {
   res.cookie("go green", "green cookie", { httpOnly: true });
-  // res.cookie("secert cookie", Math.floor(Math.random() * 99));
   return next();
 };
 
