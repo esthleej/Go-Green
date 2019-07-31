@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 // import GuestContainer from './containers/GuestContainer';
@@ -6,7 +6,7 @@ import UserContainer from './containers/UserContainer';
 import HistoryContainer from './containers/HistoryContainer';
 
 const App: React.FunctionComponent<{}> = (props: any) => {
-  const state = {
+  const [state, setState] = useState({
     username: '',
     password: '',
     totalPaid: 0,
@@ -14,22 +14,36 @@ const App: React.FunctionComponent<{}> = (props: any) => {
     recyclingHistory: {},
     type: {
       glass: {
-        lessThan: 2,
-        greaterThan: 2
+        lessThan: 0,
+        greaterThan: 0
       },
       plastic: {
-        lessThan: 1,
-        greaterThan: 99
+        lessThan: 0,
+        greaterThan: 0
       },
       metal: {
-        lessThan: 3,
-        greaterThan: 1
+        lessThan: 0,
+        greaterThan: 0
       }
     }
-  };
+  });
 
+  const handleAdd = (e) => {
+    const stateChange = {...state}
+    stateChange.type[e.target.id.toLowerCase()][e.target.value]+= 1
+    setState(stateChange)
+
+  }
+
+  const handleDelete = (e) => {
+    const stateChange = {...state}
+    stateChange.type[e.target.id.toLowerCase()][e.target.value] -= 1
+    if(stateChange.type[e.target.id.toLowerCase()][e.target.value] <= 0) {
+      stateChange.type[e.target.id.toLowerCase()][e.target.value] = 0
+    }
+    setState(stateChange)
+  }
   // didMount
-
   //   <Route
   //   path='/dashboard'
   //   render={(props) => <Dashboard {...props} isAuthed={true} />}
@@ -44,7 +58,10 @@ const App: React.FunctionComponent<{}> = (props: any) => {
           <Route
             path="/"
             exact
-            render={props => <UserContainer {...props} type={state.type} />}
+            render={props => <UserContainer {...props} 
+              type={state.type} 
+              handleAdd={handleAdd} 
+              handleDelete={handleDelete}/>}
           />
           {/* <Route
             path="/history"

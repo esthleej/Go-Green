@@ -8,19 +8,22 @@ const Recycle = (props: any) => {
     materialInfo.lessThan * 0.05 + materialInfo.greaterThan * 0.1;
   const totalCount = materialInfo.lessThan + materialInfo.greaterThan;
 
+
   return (
     <MaterialStyled>
       <div>{props.material}</div>
-      <div>Total Amount: {totalPrice}</div>
+      <div>Total Amount: ${(Math.round(100*totalPrice)/100).toFixed(2)}</div>
       <AmountStyled>
         <div>
           <img src="" />
           Less than 24oz
         </div>
         <div>
-          <button id="">-</button>
+          <button id={props.material} value={'lessThan'} onClick={e => {
+            props.handleDelete(e)}}>-</button>
           {materialInfo.lessThan}
-          <button id="">+</button>
+          <button id={props.material} value={'lessThan'}onClick={e => {
+            props.handleAdd(e)}}>+</button>
         </div>
       </AmountStyled>
       <AmountStyled>
@@ -29,9 +32,11 @@ const Recycle = (props: any) => {
           Greater than 24oz
         </div>
         <div>
-          <button id="">-</button>
+        <button id={props.material} value={'greaterThan'} onClick={e => {
+            props.handleDelete(e)}}>-</button>
           {materialInfo.greaterThan}
-          <button id="">+</button>
+          <button id={props.material} value={'greaterThan'} onClick={e => {
+            props.handleAdd(e)}}>+</button>
         </div>
       </AmountStyled>
       <TotalItemStyled>Total Item Count: {totalCount} </TotalItemStyled>

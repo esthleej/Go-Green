@@ -9,7 +9,8 @@ const UserContainer = (props: any) => {
     <UserContainerStyled>
         <div>
           <Header type={props.type}/>
-          <MainContainer type={props.type} />
+          <MainContainer type={props.type} handleAdd={props.handleAdd} 
+              handleDelete={props.handleDelete}/>
         </div>
     </UserContainerStyled>
   );
