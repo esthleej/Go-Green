@@ -9,6 +9,12 @@ module.exports = {
       template: "src/client/index.html"
     })
   ],
+  devServer: {
+    port: 8080,
+    proxy: {
+      '/': 'http://localhost:5000'
+    }
+  },
   output: {
     path: __dirname + "/dist",
     filename: "build/[name].[contenthash].js"
