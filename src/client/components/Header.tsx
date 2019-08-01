@@ -8,7 +8,6 @@ const Header = (props: any) => {
     totalCount: 0,
     totalPrice: 0
   };
-  console.log('props', props.totalPaid);
   if (props.type !== undefined) {
     const price = Object.values(props.type);
     total = price.reduce(

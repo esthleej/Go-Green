@@ -16,7 +16,7 @@ const App: React.FunctionComponent<{}> = (props: any) => {
       }
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => console.log('data', data))
   }, []);
 
   const [state, setState] = useState({
