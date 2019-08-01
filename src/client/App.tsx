@@ -8,6 +8,18 @@ import UserContainer from './containers/UserContainer';
 import HistoryContainer from './containers/HistoryContainer';
 
 const App: React.FunctionComponent<{}> = (props: any) => {
+  useEffect(() => {
+    fetch('/recyclingHistory', {
+      headers: {
+        'Content-Type': 'application/json',
+        'username': 'lol'
+      }
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }, []);
+
+
   const [state, setState] = useState({
     username: '',
     password: '',
