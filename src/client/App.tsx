@@ -3,11 +3,22 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 // import { State, Types, Recycling } from './types';
 // import GuestContainer from './containers/GuestContainer';
-import Login from './components/login'
+import Login from './components/login';
 import UserContainer from './containers/UserContainer';
 import HistoryContainer from './containers/HistoryContainer';
 
 const App: React.FunctionComponent<{}> = (props: any) => {
+  useEffect(() => {
+    fetch('/recyclingHistory', {
+      headers: {
+        'Content-Type': 'application/json',
+        username: 'lol'
+      }
+    })
+      .then(res => res.json())
+      .then(data => console.log(data));
+  }, []);
+
   const [state, setState] = useState({
     username: '',
     password: '',
@@ -44,11 +55,6 @@ const App: React.FunctionComponent<{}> = (props: any) => {
     }
     setState(stateChange);
   };
-  // didMount
-  //   <Route
-  //   path='/dashboard'
-  //   render={(props) => <Dashboard {...props} isAuthed={true} />}
-  // />
 
   return (
     <div>
@@ -67,11 +73,7 @@ const App: React.FunctionComponent<{}> = (props: any) => {
               />
             )}
           />
-          <Route
-            path="/loginpage"
-            exact
-            render={() => <Login />}
-          />
+          <Route path="/loginpage" exact render={() => <Login />} />
           <Route
             path="/history"
             exact
