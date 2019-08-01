@@ -9,6 +9,7 @@ import HistoryContainer from './containers/HistoryContainer';
 
 const App: React.FunctionComponent<{}> = (props: any) => {
   useEffect(() => {
+    console.log('in use effect');
     fetch('/recyclingHistory', {
       headers: {
         'Content-Type': 'application/json',

@@ -13,7 +13,7 @@ module.exports = {
       if (err) {
         return next(err);
       }
-      req.token = decodedToken;
+      res.locals.token = decodedToken;
       next();
     });
   },
