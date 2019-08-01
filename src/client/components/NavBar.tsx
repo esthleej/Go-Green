@@ -9,7 +9,9 @@ function NavBar() {
       <Link to={`/`}>
         <LogoStyled>Go Green</LogoStyled>
       </Link>
-      <ButtonStyled>Sign In</ButtonStyled>
+      <Link to='/loginpage'>
+        <ButtonStyled>Sign In</ButtonStyled>
+      </Link>
     </NavBarStyled>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
-// import GuestContainer from './containers/GuestContainer';
+import Login from './components/Login';
 import UserContainer from './containers/UserContainer';
 import HistoryContainer from './containers/HistoryContainer';
 
@@ -54,7 +54,6 @@ const App: React.FunctionComponent<{}> = (props: any) => {
       <Router>
         <NavBar />
         <Switch>
-          {/* <GuestContainer /> */}
           <Route
             path="/"
             exact
@@ -63,11 +62,11 @@ const App: React.FunctionComponent<{}> = (props: any) => {
               handleAdd={handleAdd} 
               handleDelete={handleDelete}/>}
           />
-          {/* <Route
-            path="/history"
+          <Route
+            path="/loginpage"
             exact
-            render={props => <HistoryContainer {...props} type={state.type} />}
-          /> */}
+            render={() => <Login />}
+          />
           <Route path="/history" exact component={HistoryContainer} />
         </Switch>
       </Router>
