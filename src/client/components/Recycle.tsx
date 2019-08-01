@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Recycle = (props: any) => {
-  console.log('material info', props.materialInfo);
   const materialInfo = props.materialInfo;
   const totalPrice =
     materialInfo.lessThan * 0.05 + materialInfo.greaterThan * 0.1;
@@ -19,10 +18,14 @@ const Recycle = (props: any) => {
         </div>
         <div>
           <button id={props.material} value={'lessThan'} onClick={e => {
-            props.handleDelete(e)}}>-</button>
+            props.handleDelete(e);
+            props.handlePayment(-.05);
+            }}>-</button>
           {materialInfo.lessThan}
           <button id={props.material} value={'lessThan'}onClick={e => {
-            props.handleAdd(e)}}>+</button>
+            props.handleAdd(e);
+            props.handlePayment(.05);
+            }}>+</button>
         </div>
       </AmountStyled>
       <AmountStyled>
@@ -32,10 +35,14 @@ const Recycle = (props: any) => {
         </div>
         <div>
         <button id={props.material} value={'greaterThan'} onClick={e => {
-            props.handleDelete(e)}}>-</button>
+            props.handleDelete(e);
+            props.handlePayment(-.10);
+            }}>-</button>
           {materialInfo.greaterThan}
           <button id={props.material} value={'greaterThan'} onClick={e => {
-            props.handleAdd(e)}}>+</button>
+            props.handleAdd(e);
+            props.handlePayment(.10);
+            }}>+</button>
         </div>
       </AmountStyled>
       <TotalItemStyled>Total Item Count: {totalCount} </TotalItemStyled>

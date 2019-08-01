@@ -7,6 +7,19 @@ userController.saveUser = (req, res, next) => {
   return next();
 };
 
+userController.getUserInfo = (req, res, next) => {
+  user.findOne({username: req.headers.username}, (err, result) => {
+    if (err) {
+      return next(err);
+    }
+    if (!result) {
+      return next('no user found');
+    }
+    res.locals.user = result;
+    return next();
+  });
+}
+
 userController.getHistory = (req, res, next) => {
   user.findOne(
     {
@@ -16,7 +29,9 @@ userController.getHistory = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      console.log("result", result);
+      if (!result) {
+        return next('no user found');
+      }
       res.locals.result = result.recyclingHistory;
       return next();
     }
@@ -41,6 +56,7 @@ userController.verifyUser = (req, res, next) => {
 };
 
 userController.addToHistory = (req, res, next) => {
+  console.log('BOODY', req.body)
   user.findOneAndUpdate(
     { username: req.body.username },
     {

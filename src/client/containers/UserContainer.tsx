@@ -13,6 +13,7 @@ const UserContainer = (props: any) => {
           type={props.type}
           handleAdd={props.handleAdd}
           handleDelete={props.handleDelete}
+          handlePayment={props.handlePayment}
         />
       </div>
     </UserContainerStyled>

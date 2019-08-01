@@ -7,13 +7,14 @@ module.exports = {
     if (!token || !token.startsWith("Bearer")) {
       return next("invalid token format");
     }
-
-    token = this.token.split("")[1];
+    
+    token = token.split(' ')[1];
     jwt.verify(token, secret, (err, decodedToken) => {
       if (err) {
         return next(err);
       }
       res.locals.token = decodedToken;
+      console.log('TOKEN', res.locals.token)
       next();
     });
   },
