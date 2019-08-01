@@ -1,17 +1,20 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 // import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import MainContainer from './MainContainer';
-import Header from '../components/Header'
+import Header from '../components/Header';
 
 const UserContainer = (props: any) => {
   return (
     <UserContainerStyled>
-        <div>
-          <Header type={props.type}/>
-          <MainContainer type={props.type} handleAdd={props.handleAdd} 
-              handleDelete={props.handleDelete}/>
-        </div>
+      <div>
+        <Header type={props.type} />
+        <MainContainer
+          type={props.type}
+          handleAdd={props.handleAdd}
+          handleDelete={props.handleDelete}
+        />
+      </div>
     </UserContainerStyled>
   );
 };
@@ -19,5 +22,5 @@ const UserContainer = (props: any) => {
 export default UserContainer;
 
 const UserContainerStyled = styled.div`
-border: 2px solid yellow
-`
+  border: 2px solid yellow;
+`;

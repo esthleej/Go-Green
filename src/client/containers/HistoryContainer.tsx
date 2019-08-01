@@ -1,8 +1,15 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
-function HistoryContainer() {
-  return <div />;
-}
+const HistoryContainer = (props: any) => {
+  return (
+    <div>
+      <Header
+        totalPaid={props.totalPaid}
+        totalItemsRecycled={props.totalItemsRecycled}
+      />
+    </div>
+  );
+};
 
 export default HistoryContainer;
