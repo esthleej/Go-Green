@@ -25,6 +25,11 @@ app.get("/verifyToken", tokenController.checkToken, (req, res, next) => {
   res.status(200).json(res.locals.token);
 });
 
+app.get('/logout', (req, res) => {
+  res.clearCookie('token');
+  res.status(200).json('logged out');
+});
+
 // loggin - middleware to verify user
 app.post("/login", userController.verifyUser, tokenController.signToken, (req, res, next) => {
   res.status(200).json('user verified');
