@@ -27,10 +27,10 @@ const Header = (props: any) => {
 
   return (
     <div>
-      <div>Help save Earth and go to your local recycling center today!</div>
+      <HelpStyled>Help save Earth and go to your local recycling center today!</HelpStyled>
       {
         props.isSignedIn === true &&
-      <div>
+      <RecycleButtonStyled>
       <Link to={'/history'}>
         <button>See Past Recycling History</button>
       </Link>
@@ -41,7 +41,7 @@ const Header = (props: any) => {
       >
         Recycle Now!
       </button>
-      </div>
+      </RecycleButtonStyled>
       }
       <TotalCategoriesInfoStyled>
         <TotalStyled>
@@ -72,5 +72,13 @@ const TotalNumberStyled = styled.div`
   flex-direction: column;
   text-align: center;
 `;
+
+const HelpStyled = styled.div`
+ text-align: center;
+`
+
+const RecycleButtonStyled = styled.div`
+  margin: 10px auto 10px 10px;
+`
 
 export default Header;

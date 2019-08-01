@@ -29,8 +29,12 @@ const NavBar = (props: any) => {
 
 const NavBarStyled = styled.div`
   display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
-  border: 2px solid green;
+  height: 4vh;
+  background-color: #3ca73c;
 `;
 const ButtonStyled = styled.button``;
 
