@@ -1,4 +1,5 @@
 export interface State {
+  isSignedin:boolean;
   username: String;
   totalPaid: Number;
   totalItemsRecycled: Number;

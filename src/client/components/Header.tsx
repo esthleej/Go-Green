@@ -28,9 +28,21 @@ const Header = (props: any) => {
   return (
     <div>
       <div>Help save Earth and go to your local recycling center today!</div>
-      <Link to={`/history`}>
+      {
+        props.isSignedIn === true &&
+      <div>
+      <Link to={'/history'}>
         <button>See Past Recycling History</button>
       </Link>
+      <button
+        onClick={() => {
+          props.handleRecycle();
+        }}
+      >
+        Recycle Now!
+      </button>
+      </div>
+      }
       <TotalCategoriesInfoStyled>
         <TotalStyled>
           Total Price:

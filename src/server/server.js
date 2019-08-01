@@ -16,7 +16,12 @@ app.post("/users", userController.saveUser, tokenController.signToken, (req, res
   res.status(200).json("user has been saved!");
 });
 
-app.post("/verifyToken", tokenController.checkToken, (req, res, next) => {
+app.get("/users", userController.getUserInfo, (req, res, next) => {
+  res.status(200).json(res.locals.user);
+})
+
+app.get("/verifyToken", tokenController.checkToken, (req, res, next) => {
+  console.log('TOKEN, ', res.locals.token)
   res.status(200).json(res.locals.token);
 });
 
