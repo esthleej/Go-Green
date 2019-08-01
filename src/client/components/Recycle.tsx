@@ -18,13 +18,11 @@ const Recycle = (props: any) => {
         </div>
         <div>
           <button id={props.material} value={'lessThan'} onClick={e => {
-            props.handleDelete(e);
-            props.handlePayment(-.05);
+            props.handleDelete(e, -0.5);
             }}>-</button>
           {materialInfo.lessThan}
           <button id={props.material} value={'lessThan'}onClick={e => {
-            props.handleAdd(e);
-            props.handlePayment(.05);
+            props.handleAdd(e, 0.5);
             }}>+</button>
         </div>
       </AmountStyled>
@@ -35,13 +33,11 @@ const Recycle = (props: any) => {
         </div>
         <div>
         <button id={props.material} value={'greaterThan'} onClick={e => {
-            props.handleDelete(e);
-            props.handlePayment(-.10);
+            props.handleDelete(e, -0.10);
             }}>-</button>
           {materialInfo.greaterThan}
           <button id={props.material} value={'greaterThan'} onClick={e => {
-            props.handleAdd(e);
-            props.handlePayment(.10);
+            props.handleAdd(e, 0.10);
             }}>+</button>
         </div>
       </AmountStyled>

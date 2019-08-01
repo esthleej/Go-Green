@@ -59,41 +59,32 @@ const App: React.FunctionComponent<{}> = (props: any) => {
         setState({...state, isSignedIn: false});
       }
     });
-
-    // fetch('/recyclingHistory', {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     username: 'lol'
-    //   }
-    // })
-    //   .then(res => res.json())
-      // .then(data => console.log('data:', data));
   }, []);
 
-  const handlePayment = payment => {
+  const handleAdd = (e, payment) => {
     const stateChange = { ...state };
+    stateChange.type[e.target.id.toLowerCase()][e.target.value] += 1;
+    stateChange.totalItemsRecycled += 1;
     stateChange.totalPaid += payment;
     stateChange.totalPaid = Math.floor(stateChange.totalPaid * 100) / 100;
     if (stateChange.totalPaid <= 0) {
       stateChange.totalPaid = 0;
     }
     setState(stateChange);
-  }
-
-  const handleAdd = e => {
-    const stateChange = { ...state };
-    stateChange.type[e.target.id.toLowerCase()][e.target.value] += 1;
-    stateChange.totalItemsRecycled += 1;
-    setState(stateChange);
   };
 
-  const handleDelete = e => {
+  const handleDelete = (e, payment) => {
     const stateChange = { ...state };
     stateChange.type[e.target.id.toLowerCase()][e.target.value] -= 1;
     stateChange.totalItemsRecycled -= 1;
     if (stateChange.type[e.target.id.toLowerCase()][e.target.value] <= 0) {
       stateChange.type[e.target.id.toLowerCase()][e.target.value] = 0;
       stateChange.totalItemsRecycled += 1;
+    }
+    stateChange.totalPaid += payment;
+    stateChange.totalPaid = Math.floor(stateChange.totalPaid * 100) / 100;
+    if (stateChange.totalPaid <= 0) {
+      stateChange.totalPaid = 0;
     }
     setState(stateChange);
   };
@@ -134,7 +125,6 @@ const App: React.FunctionComponent<{}> = (props: any) => {
                 handleDelete={handleDelete}
                 handleRecycle={handleRecycle}
                 isSignedIn={state.isSignedIn}
-                handlePayment={handlePayment}
               />
             )}
           />
