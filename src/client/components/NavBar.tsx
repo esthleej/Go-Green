@@ -14,7 +14,14 @@ const NavBar = (props: any) => {
         <LogoStyled>Go Green</LogoStyled>
       </Link>
       <Link to='/loginpage'>
-        <ButtonStyled>{signedIn}</ButtonStyled>
+        <ButtonStyled onClick={
+          e => {
+            if (signedIn === 'Log Out') {
+              e.preventDefault();
+              fetch('/logout');
+            }
+          }
+        }>{signedIn}</ButtonStyled>
       </Link>
     </NavBarStyled>
   );
