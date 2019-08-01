@@ -8,11 +8,10 @@ const Recycle = (props: any) => {
     materialInfo.lessThan * 0.05 + materialInfo.greaterThan * 0.1;
   const totalCount = materialInfo.lessThan + materialInfo.greaterThan;
 
-
   return (
     <MaterialStyled>
       <div>{props.material}</div>
-      <div>Total Amount: ${(Math.round(100*totalPrice)/100).toFixed(2)}</div>
+      <div>Total Amount: $ {(Math.round(100*totalPrice)/100).toFixed(2)}</div>
       <AmountStyled>
         <div>
           <img src="" />
