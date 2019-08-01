@@ -8,18 +8,6 @@ import UserContainer from './containers/UserContainer';
 import HistoryContainer from './containers/HistoryContainer';
 
 const App: React.FunctionComponent<{}> = (props: any) => {
-  useEffect(() => {
-    console.log('in use effect');
-    fetch('/recyclingHistory', {
-      headers: {
-        'Content-Type': 'application/json',
-        username: 'lol'
-      }
-    })
-      .then(res => res.json())
-      .then(data => console.log(data));
-  }, []);
-
   const [state, setState] = useState({
     username: '',
     password: '',
@@ -42,6 +30,19 @@ const App: React.FunctionComponent<{}> = (props: any) => {
     }
   });
 
+  //didMount
+  useEffect(() => {
+    console.log('in use effect');
+    fetch('/recyclingHistory', {
+      headers: {
+        'Content-Type': 'application/json',
+        username: 'lol'
+      }
+    })
+      .then(res => res.json())
+      .then(data => console.log('data:', data));
+  }, []);
+
   const handleAdd = e => {
     const stateChange = { ...state };
     stateChange.type[e.target.id.toLowerCase()][e.target.value] += 1;
@@ -55,6 +56,22 @@ const App: React.FunctionComponent<{}> = (props: any) => {
       stateChange.type[e.target.id.toLowerCase()][e.target.value] = 0;
     }
     setState(stateChange);
+  };
+
+  const handleRecycle = e => {
+    fetch('/recyclingHistory', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        username: 'lol'
+      },
+      body: JSON.stringify({
+        totalPaid: state.totalPaid,
+        totalItemsRecycled: state.totalItemsRecycled
+      })
+    })
+      .then(res => res.json())
+      .then(data => console.log('data:', data));
   };
 
   return (
@@ -71,6 +88,7 @@ const App: React.FunctionComponent<{}> = (props: any) => {
                 type={state.type}
                 handleAdd={handleAdd}
                 handleDelete={handleDelete}
+                handleRecycle={handleRecycle}
               />
             )}
           />
