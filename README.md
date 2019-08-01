@@ -1,4 +1,7 @@
 # Go-Green
+ALWAYS send 'Content-Type': 'application/json' header when you send a body
+(body generally has to be wrapped in JSON.stringify())
+
 post: /users
 request body expects "username" and "password" properties which are both strings
 

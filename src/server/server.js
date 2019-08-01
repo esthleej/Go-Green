@@ -8,7 +8,8 @@ const tokenController = require("./JwtController/tokenController");
 const cookieParser = require("cookie-parser");
 const port = 5000;
 app.use(cors());
-app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 // sign up
 app.post("/users", userController.saveUser, tokenController.signToken, (req, res, next) => {
@@ -17,7 +18,7 @@ app.post("/users", userController.saveUser, tokenController.signToken, (req, res
 
 // loggin - middleware to verify user
 app.post("/login", userController.verifyUser, tokenController.signToken, (req, res, next) => {
-  res.status(200).send();
+  res.status(200).json('user verified');
 });
 
 app.get("/recyclingHistory", userController.getHistory, (req, res, next) => {
@@ -25,9 +26,6 @@ app.get("/recyclingHistory", userController.getHistory, (req, res, next) => {
 });
 app.post("/recyclingHistory", userController.addToHistory, (req, res, next) => {
   res.status(200).json("history has been updated.");
-});
-app.use((err, req, res, next) => {
-  res.status(400).json(err);
 });
 
 app.get('*', (req, res) => {
@@ -37,6 +35,11 @@ app.get('*', (req, res) => {
     }
   });
 });
+
+app.use((err, req, res, next) => {
+  res.status(400).json(err || 'err');
+});
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

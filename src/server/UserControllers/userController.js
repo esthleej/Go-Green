@@ -2,6 +2,7 @@ const user = require("../Model/model");
 const userController = {};
 
 userController.saveUser = (req, res, next) => {
+  res.clearCookie('token');
   user.create({ username: req.body.username, password: req.body.password });
   return next();
 };
@@ -23,8 +24,15 @@ userController.getHistory = (req, res, next) => {
 };
 
 userController.verifyUser = (req, res, next) => {
+  res.clearCookie('token');
   user.findOne({ username: req.body.username }, (err, result) => {
-    if (result.password == req.body.password) {
+    if (err) {
+      return next(err)
+    }
+    if (!result) {
+      return next('no user found');
+    }
+    if (result.password === req.body.password) {
       return next();
     } else {
       return next("incorrect password");
@@ -33,7 +41,6 @@ userController.verifyUser = (req, res, next) => {
 };
 
 userController.addToHistory = (req, res, next) => {
-  console.log("add to history is being called");
   user.findOneAndUpdate(
     { username: req.body.username },
     {
