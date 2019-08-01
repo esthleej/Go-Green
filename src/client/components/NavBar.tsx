@@ -3,14 +3,18 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 // import { RouteComponentProps } from 'react-router-dom';
 
-function NavBar() {
+const NavBar = (props: any) => {
+  let signedIn = 'Sign In'
+  if (props.isSignedIn === true) {
+    signedIn = 'Log Out'
+  }
   return (
     <NavBarStyled>
       <Link to={`/`}>
         <LogoStyled>Go Green</LogoStyled>
       </Link>
       <Link to='/loginpage'>
-        <ButtonStyled>Sign In</ButtonStyled>
+        <ButtonStyled>{signedIn}</ButtonStyled>
       </Link>
     </NavBarStyled>
   );
