@@ -9,6 +9,7 @@ import HistoryContainer from './containers/HistoryContainer';
 
 const App: React.FunctionComponent<{}> = (props: any) => {
   const [state, setState] = useState({
+    isSignedIn: true,
     username: '',
     password: '',
     totalPaid: 0,
@@ -30,9 +31,50 @@ const App: React.FunctionComponent<{}> = (props: any) => {
     }
   });
 
+
+//   post: /verifyToken
+// body doesn't expect anything, will just check cookies
+// if the token is valid, it should return an object with the 
+// properties 'username' and 'iat'. the username can be used 
+// to query the database and fetch the user's data
+
   //didMount
   useEffect(() => {
     console.log('in use effect');
+    fetch('/verifyToken')
+    .then(res => res.json())
+    .then(jwt => {
+      if (jwt.hasOwnProperty('username') && jwt.hasOwnProperty('iat')) {
+        fetch('/getUserInfo', {
+          headers: {
+            'Content-Type': 'application/json',
+            name: jwt.username
+          }
+        })
+        .then(res => res.json())
+        .then(res => {
+          const stateChange = { ...state };
+          stateChange.username = res.username
+          setState(stateChange);
+        });
+      } else {
+        this.setState({isSignedIn: true});
+      }
+    });
+
+    // render() {
+    //   if (this.state.redirect) {
+    //     return (
+    //       <Redirect to='/' />
+    //     );
+    //   }
+
+
+
+
+
+
+
     fetch('/recyclingHistory', {
       headers: {
         'Content-Type': 'application/json',
@@ -41,12 +83,13 @@ const App: React.FunctionComponent<{}> = (props: any) => {
     })
       .then(res => res.json())
       .then(data => console.log('data:', data));
-  }, []);
+  },);
 
   const handleAdd = e => {
     const stateChange = { ...state };
     stateChange.type[e.target.id.toLowerCase()][e.target.value] += 1;
     setState(stateChange);
+    console.log('total', state.totalItemsRecycled)
   };
 
   const handleDelete = e => {
@@ -58,16 +101,19 @@ const App: React.FunctionComponent<{}> = (props: any) => {
     setState(stateChange);
   };
 
-  const handleRecycle = e => {
+  const handleRecycle = () => {
     fetch('/recyclingHistory', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        username: 'lol'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        totalPaid: state.totalPaid,
-        totalItemsRecycled: state.totalItemsRecycled
+        username: state.username,
+        history: {
+          date: new Date(),
+          amountPaid: state.totalPaid,
+          amountRecycled: state.totalItemsRecycled
+        }
       })
     })
       .then(res => res.json())
@@ -77,7 +123,7 @@ const App: React.FunctionComponent<{}> = (props: any) => {
   return (
     <div>
       <Router>
-        <NavBar />
+        <NavBar isSignedIn={state.isSignedIn}/>
         <Switch>
           <Route
             path="/"
@@ -89,6 +135,7 @@ const App: React.FunctionComponent<{}> = (props: any) => {
                 handleAdd={handleAdd}
                 handleDelete={handleDelete}
                 handleRecycle={handleRecycle}
+                isSignedIn={state.isSignedIn}
               />
             )}
           />
