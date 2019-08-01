@@ -16,6 +16,10 @@ app.post("/users", userController.saveUser, tokenController.signToken, (req, res
   res.status(200).json("user has been saved!");
 });
 
+app.post("/verifyToken", tokenController.checkToken, (req, res, next) => {
+  res.status(200).json(res.locals.token);
+});
+
 // loggin - middleware to verify user
 app.post("/login", userController.verifyUser, tokenController.signToken, (req, res, next) => {
   res.status(200).json('user verified');

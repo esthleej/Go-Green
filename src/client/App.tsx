@@ -19,7 +19,6 @@ const App: React.FunctionComponent<{}> = (props: any) => {
     .then(data => console.log(data))
   }, []);
 
-
   const [state, setState] = useState({
     username: '',
     password: '',
