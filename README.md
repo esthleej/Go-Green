@@ -13,3 +13,7 @@ request body expects "username" property which is a string, and a "history" prop
 
 post: /login
 request body expects "username" and "password" properties which are strings
+
+post: /verifyToken
+body doesn't expect anything, will just check cookies
+if the token is valid, it should return an object with the properties 'username' and 'iat'. the username can be used to query the database and fetch the user's data
