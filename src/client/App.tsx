@@ -3,22 +3,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 // import { State, Types, Recycling } from './types';
 // import GuestContainer from './containers/GuestContainer';
-import Login from './components/login'
+import Login from './components/login';
 import UserContainer from './containers/UserContainer';
 import HistoryContainer from './containers/HistoryContainer';
 
 const App: React.FunctionComponent<{}> = (props: any) => {
-  useEffect(() => {
-    fetch('/recyclingHistory', {
-      headers: {
-        'Content-Type': 'application/json',
-        'username': 'lol'
-      }
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-  }, []);
-
   const [state, setState] = useState({
     username: '',
     password: '',
@@ -41,6 +30,19 @@ const App: React.FunctionComponent<{}> = (props: any) => {
     }
   });
 
+  //didMount
+  useEffect(() => {
+    console.log('in use effect');
+    fetch('/recyclingHistory', {
+      headers: {
+        'Content-Type': 'application/json',
+        username: 'lol'
+      }
+    })
+      .then(res => res.json())
+      .then(data => console.log('data:', data));
+  }, []);
+
   const handleAdd = e => {
     const stateChange = { ...state };
     stateChange.type[e.target.id.toLowerCase()][e.target.value] += 1;
@@ -55,11 +57,22 @@ const App: React.FunctionComponent<{}> = (props: any) => {
     }
     setState(stateChange);
   };
-  // didMount
-  //   <Route
-  //   path='/dashboard'
-  //   render={(props) => <Dashboard {...props} isAuthed={true} />}
-  // />
+
+  const handleRecycle = e => {
+    fetch('/recyclingHistory', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        username: 'lol'
+      },
+      body: JSON.stringify({
+        totalPaid: state.totalPaid,
+        totalItemsRecycled: state.totalItemsRecycled
+      })
+    })
+      .then(res => res.json())
+      .then(data => console.log('data:', data));
+  };
 
   return (
     <div>
@@ -75,14 +88,11 @@ const App: React.FunctionComponent<{}> = (props: any) => {
                 type={state.type}
                 handleAdd={handleAdd}
                 handleDelete={handleDelete}
+                handleRecycle={handleRecycle}
               />
             )}
           />
-          <Route
-            path="/loginpage"
-            exact
-            render={() => <Login />}
-          />
+          <Route path="/loginpage" exact render={() => <Login />} />
           <Route
             path="/history"
             exact

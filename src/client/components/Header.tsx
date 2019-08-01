@@ -32,6 +32,13 @@ const Header = (props: any) => {
       <Link to={`/history`}>
         <button>See Past Recycling History</button>
       </Link>
+      <button
+        onClick={e => {
+          props.handleRecycle(e);
+        }}
+      >
+        Recycle Now!
+      </button>
       <TotalCategoriesInfoStyled>
         <TotalStyled>
           Total Price:

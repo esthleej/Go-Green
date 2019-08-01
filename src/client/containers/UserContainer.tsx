@@ -8,7 +8,7 @@ const UserContainer = (props: any) => {
   return (
     <UserContainerStyled>
       <div>
-        <Header type={props.type} />
+        <Header type={props.type} handleRecycle={props.handleRecycle} />
         <MainContainer
           type={props.type}
           handleAdd={props.handleAdd}
