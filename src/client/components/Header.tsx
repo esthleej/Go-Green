@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Type } from '../types';
+import { Button } from 'antd';
 
 const Header = (props: any) => {
   let total: Type | any = {
@@ -31,16 +32,17 @@ const Header = (props: any) => {
       {
         props.isSignedIn === true &&
       <RecycleButtonStyled>
+      {/* <Statistic title='Total Amount: $' value={2423442}/> */}
       <Link to={'/history'}>
-        <button>See Past Recycling History</button>
+        <Button type="default" size="small">See Past Recycling History</Button>
       </Link>
-      <button
+      <Button type="primary" size="small"
         onClick={() => {
           props.handleRecycle();
         }}
       >
         Recycle Now!
-      </button>
+      </Button>
       </RecycleButtonStyled>
       }
       <TotalCategoriesInfoStyled>
@@ -66,6 +68,7 @@ const TotalCategoriesInfoStyled = styled.div`
 const TotalStyled = styled.div`
   border: 1px solid black;
   padding: 30px;
+  background-color: #f1f1f1;
 `;
 const TotalNumberStyled = styled.div`
   display: flex;
@@ -75,10 +78,14 @@ const TotalNumberStyled = styled.div`
 
 const HelpStyled = styled.div`
  text-align: center;
+ margin-top: 20px;
 `
 
 const RecycleButtonStyled = styled.div`
+  display:flex;
+  justify-content: space-around;
   margin: 10px auto 10px 10px;
+
 `
 
 export default Header;
