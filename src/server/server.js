@@ -11,6 +11,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+
 // sign up
 app.post("/users", userController.saveUser, tokenController.signToken, (req, res, next) => {
   res.status(200).json("user has been saved!");

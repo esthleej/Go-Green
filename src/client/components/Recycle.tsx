@@ -1,5 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Col, Statistic} from 'antd';
+import { createGlobalStyle } from "styled-components";
+
+
 
 const Recycle = (props: any) => {
   const materialInfo = props.materialInfo;
@@ -9,11 +13,11 @@ const Recycle = (props: any) => {
 
   return (
     <MaterialStyled>
-      <div>{props.material}</div>
+      <CardStyled>{props.material}</CardStyled>
       <div>Total Amount: $ {(Math.round(100*totalPrice)/100).toFixed(2)}</div>
       <AmountStyled>
         <div>
-          <img src="" />
+          {/* <img src="../src/assets/plastic_less.png" /> */}
           Less than 24oz
         </div>
         <div>
@@ -51,14 +55,22 @@ const MaterialStyled = styled.div `
     display:flex;
     flex-direction: column;
     padding: 20px;
+    border: 1px solid black;
+    margin: 20px;
 `
 const AmountStyled = styled.div  `
   display: flex;
-  border: 1px solid blue;
-  justify-content:space-between
+  justify-content:space-between;
+  display: flex;
+  border-bottom: 1px solid gray;
+  margin-bottom: 18px;
 `
 const TotalItemStyled = styled.div`
   text-align: right;
-  
 `
+const CardStyled = styled.div`
+  background-color: #9ac8ed;
+`
+
+
 export default Recycle;

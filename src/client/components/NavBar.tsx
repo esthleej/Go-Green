@@ -10,10 +10,10 @@ const NavBar = (props: any) => {
   }
   return (
     <NavBarStyled>
-      <Link to={`/`}>
-        <LogoStyled>Go Green</LogoStyled>
+      <Link to={`/`} style={{textDecoration:'none', color:'#4d4848', margin: '8px'}}>
+        GoGreen
       </Link>
-      <Link to='/loginpage'>
+      <Link to='/loginpage' style={{textDecoration:'none', color:'#4d4848'}}>
         <ButtonStyled onClick={
           e => {
             if (signedIn === 'Log Out') {
@@ -29,12 +29,20 @@ const NavBar = (props: any) => {
 
 const NavBarStyled = styled.div`
   display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
-  border: 2px solid green;
+  height: 4vh;
+  background-color: #5cbb5cd1;
 `;
-const ButtonStyled = styled.button``;
+const ButtonStyled = styled.div`
+  text-decoration: none;
+  margin: 8px;
+`;
 
-const LogoStyled = styled.button`
-  text-decoration: none !important;
+const LogoStyled = styled.div`
+  text-decoration: none;
+  margin: 8px;
 `;
 export default NavBar;

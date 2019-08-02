@@ -22,5 +22,5 @@ const UserContainer = (props: any) => {
 export default UserContainer;
 
 const UserContainerStyled = styled.div`
-  border: 2px solid yellow;
+  // border: 2px solid yellow;
 `;
