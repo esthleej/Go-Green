@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { Bar } from 'react-chartjs-2';
+import styled from 'styled-components';
 
 const HistoryContainer = (props: any) => {
   const [totalPaid, setTotalPaid] = useState(0);
@@ -99,9 +100,15 @@ const HistoryContainer = (props: any) => {
   return (
     <div>
       <Header totalPaid={totalPaid} totalItemsRecycled={totalRecycled} />
-      <Bar data={data} options={options} />
+      <GraphStyled style={{ padding: '50px' }}>
+        <Bar data={data} options={options} />
+      </GraphStyled>
     </div>
   );
 };
 
 export default HistoryContainer;
+
+const GraphStyled = styled.div`
+  padding: 20px;
+`;

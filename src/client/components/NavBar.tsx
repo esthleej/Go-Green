@@ -4,28 +4,36 @@ import styled from 'styled-components';
 // import { RouteComponentProps } from 'react-router-dom';
 
 const NavBar = (props: any) => {
-  let signedIn = 'Sign In'
+  let signedIn = 'Sign In';
   if (props.isSignedIn === true) {
-    signedIn = 'Log Out'
+    signedIn = 'Log Out';
   }
   return (
     <NavBarStyled>
-      <Link to={`/`} style={{textDecoration:'none', color:'#4d4848', margin: '8px'}}>
+      <Link
+        to={`/`}
+        style={{ textDecoration: 'none', color: '#4d4848', margin: '8px' }}
+      >
         GoGreen
       </Link>
-      <Link to='/loginpage' style={{textDecoration:'none', color:'#4d4848'}}>
-        <ButtonStyled onClick={
-          e => {
+      <Link
+        to="/loginpage"
+        style={{ textDecoration: 'none', color: '#4d4848' }}
+      >
+        <ButtonStyled
+          onClick={e => {
             if (signedIn === 'Log Out') {
               e.preventDefault();
               fetch('/logout');
             }
-          }
-        }>{signedIn}</ButtonStyled>
+          }}
+        >
+          {signedIn}
+        </ButtonStyled>
       </Link>
     </NavBarStyled>
   );
-}
+};
 
 const NavBarStyled = styled.div`
   display: flex;

@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 // import { State, Types, Recycling } from './types';
 // import GuestContainer from './containers/GuestContainer';
+import 'antd/dist/antd.css';
 import Login from './components/login';
 import UserContainer from './containers/UserContainer';
 import HistoryContainer from './containers/HistoryContainer';
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -14,7 +15,7 @@ const GlobalStyles = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
     font-family: 'M', sans-serif;
   }
-`
+`;
 const App: React.FunctionComponent<{}> = (props: any) => {
   const [state, setState] = useState({
     isSignedIn: false,
@@ -39,34 +40,34 @@ const App: React.FunctionComponent<{}> = (props: any) => {
     }
   });
 
-//   post: /verifyToken
-// body doesn't expect anything, will just check cookies
-// if the token is valid, it should return an object with the 
-// properties 'username' and 'iat'. the username can be used 
-// to query the database and fetch the user's data
+  //   post: /verifyToken
+  // body doesn't expect anything, will just check cookies
+  // if the token is valid, it should return an object with the
+  // properties 'username' and 'iat'. the username can be used
+  // to query the database and fetch the user's data
 
   //didMount
   useEffect(() => {
     fetch('/verifyToken')
-    .then(res => res.json())
-    .then(jwt => {
-      if (jwt.hasOwnProperty('username') && jwt.hasOwnProperty('iat')) {
-        fetch('/users', {
-          headers: {
-            name: jwt.username
-          }
-        })
-        .then(res => res.json())
-        .then(res => {
-          const stateChange = { ...state };
-          stateChange.username = jwt.username
-          stateChange.isSignedIn = true;
-          setState(stateChange);
-        });
-      } else {
-        setState({...state, isSignedIn: false});
-      }
-    });
+      .then(res => res.json())
+      .then(jwt => {
+        if (jwt.hasOwnProperty('username') && jwt.hasOwnProperty('iat')) {
+          fetch('/users', {
+            headers: {
+              name: jwt.username
+            }
+          })
+            .then(res => res.json())
+            .then(res => {
+              const stateChange = { ...state };
+              stateChange.username = jwt.username;
+              stateChange.isSignedIn = true;
+              setState(stateChange);
+            });
+        } else {
+          setState({ ...state, isSignedIn: false });
+        }
+      });
   }, []);
 
   const handleAdd = (e, payment) => {
@@ -121,7 +122,7 @@ const App: React.FunctionComponent<{}> = (props: any) => {
       <GlobalStyles />
       {console.log('STATEEEEEEEEEEEEEE', state)}
       <Router>
-        <NavBar isSignedIn={state.isSignedIn}/>
+        <NavBar isSignedIn={state.isSignedIn} />
         <Switch>
           <Route
             path="/"

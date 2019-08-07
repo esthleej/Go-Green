@@ -1,4 +1,6 @@
-import React, {useRef} from 'react'
+import React, { useRef } from 'react';
+import { Button } from 'antd';
+import styled from 'styled-components';
 
 const Login = () => {
   const usernameLogin = useRef(null);
@@ -16,20 +18,21 @@ const Login = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          username, password
+          username,
+          password
         })
       })
-      .then(res => res.json())
-      .then(data => {
-        if (data === 'user verified') {
-          console.log('u logged in')
-        } else {
-          console.log('u DIDNT loggigng in')
-        }
-      })
-      .catch(err => {
-        console.log('u DIDNTS loggigng in')
-      });
+        .then(res => res.json())
+        .then(data => {
+          if (data === 'user verified') {
+            console.log('u logged in');
+          } else {
+            console.log('u DIDNT loggigng in');
+          }
+        })
+        .catch(err => {
+          console.log('u DIDNTS loggigng in');
+        });
     }
   };
 
@@ -43,32 +46,46 @@ const Login = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          username, password
+          username,
+          password
         })
       })
-      .then(res => res.json())
-      .then(data => {
-        console.log('u signed up')
-      })
-      .catch(err => {
-        console.log('u didnt signed up')
-      });
+        .then(res => res.json())
+        .then(data => {
+          console.log('u signed up');
+        })
+        .catch(err => {
+          console.log('u didnt signed up');
+        });
     }
   };
 
   return (
-    <div>
-      <button onClick={handleLogin}>log in</button>
-      <br />
-      <input type="text" placeholder="username" ref={usernameLogin}></input>
-      <input type="text" placeholder="password" ref={passwordLogin}></input>
-      <br />
-      <button onClick={handleSignup}>sign up</button>
-      <br />
-      <input type="text" placeholder="username" ref={usernameSignup}></input>
-      <input type="text" placeholder="password" ref={passwordSignup}></input>
-    </div>
-  )
+    <LoginStyled>
+      <Stuff>
+        Welcome to GoGreen!
+        <div>
+          <input type="text" placeholder="username" ref={usernameLogin} />
+          <input type="password" placeholder="password" ref={passwordLogin} />
+          <Button onClick={handleLogin}>log in</Button>
+        </div>
+        <div>
+          <input type="text" placeholder="username" ref={usernameSignup} />
+          <input type="password" placeholder="password" ref={passwordSignup} />
+          <Button onClick={handleSignup}>sign up</Button>
+        </div>
+      </Stuff>
+    </LoginStyled>
+  );
 };
 
+const LoginStyled = styled.div`
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+`;
+
+const Stuff = styled.div`
+  flex-direction: column;
+`;
 export default Login;
